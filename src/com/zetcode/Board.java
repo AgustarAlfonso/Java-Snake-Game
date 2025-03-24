@@ -17,37 +17,37 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 
-    private final int B_WIDTH = 300;
-    private final int B_HEIGHT = 300;
-    private final int DOT_SIZE = 10;
-    private final int ALL_DOTS = 900;
-    private final int RAND_POS = 29;
-    private final int DELAY = 140;
+    public final int B_WIDTH = 300;
+    public final int B_HEIGHT = 300;
+    public final int DOT_SIZE = 10;
+    public final int ALL_DOTS = 900;
+    public final int RAND_POS = 29;
+    public final int DELAY = 140;
 
-    private final int x[] = new int[ALL_DOTS];
-    private final int y[] = new int[ALL_DOTS];
+    public final int x[] = new int[ALL_DOTS];
+    public final int y[] = new int[ALL_DOTS];
 
-    private int dots;
-    private int apple_x;
-    private int apple_y;
+    public int dots;
+    public int apple_x;
+    public int apple_y;
 
-    private boolean leftDirection = false;
-    private boolean rightDirection = true;
-    private boolean upDirection = false;
-    private boolean downDirection = false;
-    private boolean inGame = true;
+    public boolean leftDirection = false;
+    public boolean rightDirection = true;
+    public boolean upDirection = false;
+    public boolean downDirection = false;
+    public boolean inGame = true;
 
-    private Timer timer;
-    private Image ball;
-    private Image apple;
-    private Image head;
+    public Timer timer;
+    public Image ball;
+    public Image apple;
+    public Image head;
 
     public Board() {
         
         initBoard();
     }
     
-    private void initBoard() {
+    public void initBoard() {
 
         addKeyListener(new TAdapter());
         setBackground(Color.black);
@@ -58,7 +58,7 @@ public class Board extends JPanel implements ActionListener {
         initGame();
     }
 
-    private void loadImages() {
+    public void loadImages() {
 
         ImageIcon iid = new ImageIcon("src/resources/dot.png");
         ball = iid.getImage();
@@ -70,7 +70,7 @@ public class Board extends JPanel implements ActionListener {
         head = iih.getImage();
     }
 
-    private void initGame() {
+    public void initGame() {
 
         dots = 3;
 
@@ -92,7 +92,7 @@ public class Board extends JPanel implements ActionListener {
         doDrawing(g);
     }
     
-    private void doDrawing(Graphics g) {
+    public void doDrawing(Graphics g) {
         
         if (inGame) {
 
@@ -114,7 +114,7 @@ public class Board extends JPanel implements ActionListener {
         }        
     }
 
-    private void gameOver(Graphics g) {
+    public void gameOver(Graphics g) {
         
         String msg = "Game Over";
         Font small = new Font("Helvetica", Font.BOLD, 14);
@@ -125,7 +125,7 @@ public class Board extends JPanel implements ActionListener {
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
     }
 
-    private void checkApple() {
+    public void checkApple() {
 
         if ((x[0] == apple_x) && (y[0] == apple_y)) {
 
@@ -134,7 +134,7 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private void move() {
+    public void move() {
 
         for (int z = dots; z > 0; z--) {
             x[z] = x[(z - 1)];
@@ -158,7 +158,7 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private void checkCollision() {
+    public void checkCollision() {
 
         for (int z = dots; z > 0; z--) {
 
@@ -188,7 +188,7 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private void locateApple() {
+    public void locateApple() {
 
         int r = (int) (Math.random() * RAND_POS);
         apple_x = ((r * DOT_SIZE));
@@ -210,7 +210,7 @@ public class Board extends JPanel implements ActionListener {
         repaint();
     }
 
-    private class TAdapter extends KeyAdapter {
+    public class TAdapter extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent e) {
